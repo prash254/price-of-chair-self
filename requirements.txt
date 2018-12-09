@@ -4,3 +4,4 @@ beautifulsoup4 == 4.6.3
 passlib == 1.7.1
 requests == 2.20.0
 uwsgi
+
