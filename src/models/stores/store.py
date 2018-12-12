@@ -1,7 +1,7 @@
-import re
 
 __author__ = 'sp'
 
+import re
 import uuid
 from src.common.database import Database
 import src.models.stores.constants as StoreConstants
@@ -50,14 +50,13 @@ class Store(object):
         :param url: The item's URL
         :return: a Store, or raises a StoreNotFoundException if no store matches the URL
         """
-
         pattern = re.compile(r'^(?P<url_prefix>[^:]*://[^/]+)')
         match = pattern.match(url)
         if match:
             store = cls.get_by_url_prefix(match.group('url_prefix'))
             return store
         raise StoreErrors.StoreNotFoundException("The URL Prefix used to find the store showed no results")
-
+    
     @classmethod
     def all(cls):
         return [cls(**elem) for elem in Database.find(StoreConstants.COLLECTION, {})]
