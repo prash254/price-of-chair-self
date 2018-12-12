@@ -29,9 +29,10 @@ class Item(object):
         soup = BeautifulSoup(content, "html.parser")
         element = soup.find(self.tag_name, self.query)
         string_price = element.text.strip()
+        sentence = re.sub(r"\s+", "", string_price)
 
         pattern = re.compile("(\d+.\d)")
-        match = pattern.search(string_price)
+        match = pattern.search(sentence)
 
         self.price = float(match.group())
         return self.price
